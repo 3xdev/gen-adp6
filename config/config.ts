@@ -3,7 +3,6 @@ import { defineConfig } from '@umijs/max';
 import { join } from 'path';
 import defaultSettings from './defaultSettings';
 import proxy from './proxy';
-import routes from './routes';
 const { REACT_APP_ENV = 'dev' } = process.env;
 export default defineConfig({
   /**
@@ -26,7 +25,8 @@ export default defineConfig({
    * @doc https://umijs.org/docs/guides/routes
    */
   // umi routes: https://umijs.org/docs/routing
-  routes,
+  // feat: 取消routes配置，进入约定式路由模式
+  // routes,
   /**
    * @name 主题的配置
    * @description 虽然叫主题，但是其实只是 less 的变量设置

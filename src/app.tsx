@@ -1,17 +1,45 @@
 import { Footer } from '@/components';
 import { Question } from '@/components';
-import { LinkOutlined } from '@ant-design/icons';
-import type { Settings as LayoutSettings } from '@ant-design/pro-components';
+import {
+  BookOutlined,
+  CrownOutlined,
+  HeartOutlined,
+  LinkOutlined,
+  SettingOutlined,
+  SmileOutlined,
+  TableOutlined,
+} from '@ant-design/icons';
+import type { MenuDataItem, Settings as LayoutSettings } from '@ant-design/pro-components';
 import { SettingDrawer } from '@ant-design/pro-components';
 import type { RunTimeLayoutConfig } from '@umijs/max';
-import { history, Link } from '@umijs/max';
+import { history } from '@umijs/max';
 import defaultSettings from '../config/defaultSettings';
 import { errorConfig } from './requestErrorConfig';
-import { currentUser as queryCurrentUser } from '@/services/ant-design-pro/api';
+import {
+  currentUser as queryCurrentUser,
+  getMenus,
+  getTables,
+} from '@/services/ant-design-pro/api';
 import React from 'react';
 import { AvatarDropdown, AvatarName } from '@/components';
 const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '/user/login';
+
+const iconMap = {
+  book: <BookOutlined />,
+  crown: <CrownOutlined />,
+  heart: <HeartOutlined />,
+  link: <LinkOutlined />,
+  setting: <SettingOutlined />,
+  smile: <SmileOutlined />,
+  table: <TableOutlined />,
+};
+
+const mapMenuItems = (menus: MenuDataItem[]): MenuDataItem[] =>
+  menus.map(({ icon, ...item }) => ({
+    ...item,
+    icon: icon && iconMap[icon as string],
+  }));
 
 /**
  * @see  https://umijs.org/zh-CN/plugins/plugin-initial-state
@@ -19,32 +47,46 @@ const loginPath = '/user/login';
 export async function getInitialState(): Promise<{
   settings?: Partial<LayoutSettings>;
   currentUser?: API.CurrentUser;
+  currentUserTables?: string[];
   loading?: boolean;
   fetchUserInfo?: () => Promise<API.CurrentUser | undefined>;
+  fetchUserTables?: () => Promise<string[]>;
 }> {
   const fetchUserInfo = async () => {
     try {
-      const msg = await queryCurrentUser({
+      const result = await queryCurrentUser({
         skipErrorHandler: true,
       });
-      return msg.data;
+      return result;
     } catch (error) {
       history.push(loginPath);
     }
     return undefined;
   };
+  const fetchUserTables = async () => {
+    try {
+      return (await getTables()).data;
+    } catch (error) {
+      history.push(loginPath);
+    }
+    return [];
+  };
   // 如果不是登录页面，执行
   const { location } = history;
   if (location.pathname !== loginPath) {
     const currentUser = await fetchUserInfo();
+    const currentUserTables = await fetchUserTables();
     return {
       fetchUserInfo,
+      fetchUserTables,
       currentUser,
+      currentUserTables,
       settings: defaultSettings as Partial<LayoutSettings>,
     };
   }
   return {
     fetchUserInfo,
+    fetchUserTables,
     settings: defaultSettings as Partial<LayoutSettings>,
   };
 }
@@ -52,6 +94,14 @@ export async function getInitialState(): Promise<{
 // ProLayout 支持的api https://procomponents.ant.design/components/layout
 export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) => {
   return {
+    menu: {
+      params: {
+        id: initialState?.currentUser?.id,
+      },
+      request: async (params) => {
+        return params.id ? mapMenuItems((await getMenus()).data) : [];
+      },
+    },
     actionsRender: () => [<Question key="doc" />],
     avatarProps: {
       src: initialState?.currentUser?.avatar,
@@ -61,7 +111,7 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
       },
     },
     waterMarkProps: {
-      content: initialState?.currentUser?.name,
+      content: initialState?.currentUser?.nickname,
     },
     footerRender: () => <Footer />,
     onPageChange: () => {
@@ -91,14 +141,6 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
         width: '331px',
       },
     ],
-    links: isDev
-      ? [
-          <Link key="openapi" to="/umi/plugin/openapi" target="_blank">
-            <LinkOutlined />
-            <span>OpenAPI 文档</span>
-          </Link>,
-        ]
-      : [],
     menuHeaderRender: undefined,
     // 自定义 403 页面
     // unAccessible: <div>unAccessible</div>,
