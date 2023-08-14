@@ -36,13 +36,22 @@
   },
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx}": "npm run lint-staged:js",
-    "**/*.{js,jsx,tsx,ts,less,md,json}": ["prettier --write"]
+    "**/*.{js,jsx,tsx,ts,less,md,json}": [
+      "prettier --write"
+    ]
   },
-  "browserslist": ["> 1%", "last 2 versions", "not ie <= 10"],
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 10"
+  ],
   "dependencies": {
     "@ant-design/icons": "^4.8.0",
     "@ant-design/pro-components": "^2.4.16",
     "@ant-design/use-emotion-css": "1.0.4",
+    "@formily/antd-v5": "^1.1.0",
+    "@formily/core": "^2.2.29",
+    "@formily/react": "^2.2.29",
     "@umijs/route-utils": "^2.2.2",
     "antd": "^5.5.1",
     "classnames": "^2.3.2",
@@ -86,5 +95,7 @@
     "typescript": "^5.0.0",
     "umi-presets-pro": "^2.0.3"
   },
-  "engines": { "node": ">=12.0.0" }
+  "engines": {
+    "node": ">=12.0.0"
+  }
 }
