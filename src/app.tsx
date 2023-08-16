@@ -22,7 +22,7 @@ import {
 import React from 'react';
 const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '/user/login';
-const iconMap = {
+const iconMap: Record<string, any> = {
   book: <BookOutlined />,
   crown: <CrownOutlined />,
   heart: <HeartOutlined />,
