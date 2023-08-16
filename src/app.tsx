@@ -1,4 +1,4 @@
-import { Footer, Question, SelectLang, AvatarDropdown, AvatarName } from '@/components';
+import { Footer, Question, AvatarDropdown, AvatarName } from '@/components';
 import {
   BookOutlined,
   CrownOutlined,
@@ -22,7 +22,6 @@ import {
 import React from 'react';
 const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '/user/login';
-
 const iconMap = {
   book: <BookOutlined />,
   crown: <CrownOutlined />,
@@ -32,7 +31,6 @@ const iconMap = {
   smile: <SmileOutlined />,
   table: <TableOutlined />,
 };
-
 const mapMenuItems = (menus: MenuDataItem[]): MenuDataItem[] =>
   menus.map(({ icon, ...item }) => ({
     ...item,
@@ -100,7 +98,7 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
         return params.id ? mapMenuItems((await getMenus()).data) : [];
       },
     },
-    actionsRender: () => [<Question key="doc" />, <SelectLang key="SelectLang" />],
+    actionsRender: () => [<Question key="doc" />],
     avatarProps: {
       src: initialState?.currentUser?.avatar,
       title: <AvatarName />,
