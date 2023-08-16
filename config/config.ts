@@ -3,7 +3,6 @@ import { defineConfig } from '@umijs/max';
 import { join } from 'path';
 import defaultSettings from './defaultSettings';
 import proxy from './proxy';
-import routes from './routes';
 
 const { REACT_APP_ENV = 'dev' } = process.env;
 
@@ -28,8 +27,7 @@ export default defineConfig({
    * @description 只支持 path，component，routes，redirect，wrappers，title 的配置
    * @doc https://umijs.org/docs/guides/routes
    */
-  // umi routes: https://umijs.org/docs/routing
-  routes,
+  // 没有routes配置，进入约定式路由模式
   /**
    * @name 主题的配置
    * @description 虽然叫主题，但是其实只是 less 的变量设置

@@ -2,27 +2,25 @@
 /* eslint-disable */
 import { request } from '@umijs/max';
 
-/** 获取当前的用户 GET /api/currentUser */
+/** 获取当前的用户 GET /api/admin/profile */
 export async function currentUser(options?: { [key: string]: any }) {
-  return request<{
-    data: API.CurrentUser;
-  }>('/api/currentUser', {
+  return request<API.CurrentUser>('/api/admin/profile', {
     method: 'GET',
     ...(options || {}),
   });
 }
 
-/** 退出登录接口 POST /api/login/outLogin */
+/** 解除登录接口 DELETE /api/admin/token */
 export async function outLogin(options?: { [key: string]: any }) {
-  return request<Record<string, any>>('/api/login/outLogin', {
-    method: 'POST',
+  return request<Record<string, any>>('/api/admin/token', {
+    method: 'DELETE',
     ...(options || {}),
   });
 }
 
-/** 登录接口 POST /api/login/account */
+/** 登录接口 POST /api/admin/token */
 export async function login(body: API.LoginParams, options?: { [key: string]: any }) {
-  return request<API.LoginResult>('/api/login/account', {
+  return request<API.LoginResult>('/api/admin/token', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -32,54 +30,104 @@ export async function login(body: API.LoginParams, options?: { [key: string]: an
   });
 }
 
-/** 此处后端没有提供注释 GET /api/notices */
-export async function getNotices(options?: { [key: string]: any }) {
-  return request<API.NoticeIconList>('/api/notices', {
+/** 全部表格 */
+export async function allTables() {
+  return request('/api/admin/system_table?pageSize=99999', {
     method: 'GET',
-    ...(options || {}),
   });
 }
 
-/** 获取规则列表 GET /api/rule */
-export async function rule(
-  params: {
-    // query
-    /** 当前的页码 */
-    current?: number;
-    /** 页面的容量 */
-    pageSize?: number;
-  },
-  options?: { [key: string]: any },
-) {
-  return request<API.RuleList>('/api/rule', {
+/** 全部字典 */
+export async function allDicts() {
+  return request('/api/admin/system_dict?pageSize=99999', {
+    method: 'GET',
+  });
+}
+
+/** 全部角色 */
+export async function allRoles() {
+  return request('/api/admin/system_role?pageSize=99999', {
+    method: 'GET',
+  });
+}
+
+/** 获取字典 */
+export async function getDicts(name: string) {
+  return request(`/api/admin/system_dict/${name}`, {
+    method: 'GET',
+  });
+}
+
+/** 获取管理员可访问菜单 */
+export async function getMenus() {
+  return request('/api/admin/menus', {
+    method: 'GET',
+  });
+}
+
+/** 获取管理员可访问表格 */
+export async function getTables() {
+  return request('/api/admin/tables', {
+    method: 'GET',
+  });
+}
+
+/** 获取suggest */
+export async function getSuggest(table: string, keyword: string, query?: Record<string, any>) {
+  return request(`/api/admin/suggest/${table}`, {
     method: 'GET',
     params: {
-      ...params,
+      ...(query || {}),
+      keyword,
     },
+  });
+}
+
+/** 获取enum */
+export async function getEnum(table: string, values: string, valueCol: string, labelCol: string) {
+  return request(`/api/admin/enum/${table}`, {
+    method: 'GET',
+    params: {
+      values,
+      valueCol,
+      labelCol,
+    },
+  });
+}
+
+/** 获取schema */
+export async function getProTableSchema(table: string) {
+  return request(`/api/admin/schema/protable/${table}`);
+}
+export async function getFormilySchema(type: string, code: string) {
+  return request(`/api/admin/schema/formily/${type}/${code}`);
+}
+
+/** 此处后端没有提供注释 GET /api/admin/notices */
+export async function getNotices(options?: { [key: string]: any }) {
+  return request<API.NoticeIconList>('/api/admin/notices', {
+    method: 'GET',
     ...(options || {}),
   });
 }
 
-/** 新建规则 PUT /api/rule */
-export async function updateRule(options?: { [key: string]: any }) {
-  return request<API.RuleListItem>('/api/rule', {
-    method: 'PUT',
-    ...(options || {}),
-  });
-}
-
-/** 新建规则 POST /api/rule */
-export async function addRule(options?: { [key: string]: any }) {
-  return request<API.RuleListItem>('/api/rule', {
+/** 上传图片 */
+export async function uploadImages(file: any) {
+  const formData = new FormData();
+  formData.append('file', file);
+  return request(`/api/admin/upload/image/img`, {
     method: 'POST',
-    ...(options || {}),
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+    data: formData,
   });
 }
 
-/** 删除规则 DELETE /api/rule */
-export async function removeRule(options?: { [key: string]: any }) {
-  return request<Record<string, any>>('/api/rule', {
-    method: 'DELETE',
-    ...(options || {}),
+/** 动态获取 */
+export async function requestFetch(method: string, url: string, params: Record<string, any>) {
+  return request(url, {
+    method: method,
+    data: params,
   });
 }
