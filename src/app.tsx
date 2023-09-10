@@ -89,7 +89,9 @@ export async function getInitialState(): Promise<{
 
 // ProLayout 支持的api https://procomponents.ant.design/components/layout
 export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) => {
+  const { location } = history;
   return {
+    pure: location.pathname === loginPath,
     menu: {
       params: {
         id: initialState?.currentUser?.id,
@@ -111,7 +113,6 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
     },
     footerRender: () => <Footer />,
     onPageChange: () => {
-      const { location } = history;
       // 如果没有登录，重定向到 login
       if (!initialState?.currentUser && location.pathname !== loginPath) {
         history.push(loginPath);
