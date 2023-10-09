@@ -1,4 +1,4 @@
-import { ExportOutlined, PlusOutlined } from '@ant-design/icons';
+import { PlusOutlined } from '@ant-design/icons';
 import { Button, message, Popconfirm, Avatar } from 'antd';
 import React, { useState, useRef, useEffect } from 'react';
 import { PageContainer, FooterToolbar } from '@ant-design/pro-layout';
@@ -8,7 +8,6 @@ import UpdateForm from './components/UpdateForm';
 import type { TableItem } from './data.d';
 import { getList, updateItem, addItem, removeItem } from './service';
 import { allRoles } from '@/services/ant-design-pro/api';
-import ExportExcel from '@/components/ExportExcel';
 
 /**
  * 添加
@@ -72,7 +71,6 @@ const AdminTable: React.FC = () => {
   const [roles, setRoles] = useState<TableItem>();
   const [currentRow, setCurrentRow] = useState<TableItem>();
   const [selectedRows, setSelectedRows] = useState<TableItem[]>([]);
-  const [allRows, setAllRows] = useState<TableItem[]>([]);
 
   useEffect(() => {
     allRoles().then((res) => {
@@ -86,9 +84,6 @@ const AdminTable: React.FC = () => {
 
   const handleList = async (params: any, sorter: any, filter: any) => {
     const result = getList({ ...params, sorter, filter });
-    result.then((res) => {
-      setAllRows(res.data);
-    });
     return result;
   };
 
@@ -198,15 +193,6 @@ const AdminTable: React.FC = () => {
             }}
           >
             <PlusOutlined /> 新建
-          </Button>,
-          <Button
-            type="primary"
-            key="export"
-            onClick={() => {
-              ExportExcel(columns, allRows);
-            }}
-          >
-            <ExportOutlined /> 导出
           </Button>,
         ]}
         request={(params, sorter, filter) => handleList(params, sorter, filter)}
