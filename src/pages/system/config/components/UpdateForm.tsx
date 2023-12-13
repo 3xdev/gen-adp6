@@ -128,7 +128,7 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
       destroyOnClose
       title={values.id ? '编辑' : '添加'}
       width={640}
-      visible={updateModalVisible}
+      open={updateModalVisible}
       onCancel={() => onCancel()}
       footer={null}
     >

@@ -1,8 +1,41 @@
-import React, { useEffect, useState } from 'react';
-import { Form, Input, Modal, Select, Button, Upload, notification } from 'antd';
-import type { TableItem, UploadItem } from '../data.d';
-import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
+import React, { useMemo } from 'react';
+import { Modal } from 'antd';
+import type { TableItem } from '../data.d';
 import { allRoles } from '@/services/ant-design-pro/api';
+import { createForm } from '@formily/core';
+import { createSchemaField } from '@formily/react';
+import {
+  Form,
+  FormItem,
+  DatePicker,
+  Checkbox,
+  Cascader,
+  Editable,
+  Input,
+  NumberPicker,
+  Switch,
+  Password,
+  PreviewText,
+  Radio,
+  Reset,
+  Select,
+  Space,
+  Submit,
+  TimePicker,
+  Transfer,
+  TreeSelect,
+  Upload,
+  FormGrid,
+  FormLayout,
+  FormTab,
+  FormCollapse,
+  ArrayTable,
+  ArrayItems,
+  ArrayCards,
+  FormButtonGroup,
+} from '@formily/antd-v5';
+import { Card, Slider, Rate } from 'antd';
+import CustomImageUpload from '@/components/Formily/CustomImageUpload';
 
 export interface UpdateFormProps {
   onCancel: (flag?: boolean) => void;
@@ -10,132 +43,140 @@ export interface UpdateFormProps {
   updateModalVisible: boolean;
   values: Partial<TableItem>;
 }
-const FormItem = Form.Item;
-const { Option } = Select;
 
-const formLayout = {
-  labelCol: { span: 7 },
-  wrapperCol: { span: 13 },
-};
+const SchemaField = createSchemaField({
+  components: {
+    Space,
+    FormGrid,
+    FormLayout,
+    FormTab,
+    FormCollapse,
+    ArrayTable,
+    ArrayItems,
+    ArrayCards,
+    FormItem,
+    DatePicker,
+    Checkbox,
+    Cascader,
+    Editable,
+    Input,
+    NumberPicker,
+    Switch,
+    Password,
+    PreviewText,
+    Radio,
+    Reset,
+    Select,
+    Submit,
+    TimePicker,
+    Transfer,
+    TreeSelect,
+    Upload,
+    Card,
+    Slider,
+    Rate,
+    CustomImageUpload,
+  },
+});
 
 const UpdateForm: React.FC<UpdateFormProps> = (props) => {
-  const formVals = props.values;
-  const [form] = Form.useForm();
-  const [roles, setRoles] = useState([]);
-  const [uploadVal, setUploadVal] = useState<UploadItem>({ loading: false, url: formVals.avatar });
-  const { onSubmit: handleUpdate, onCancel: handleUpdateModalVisible, updateModalVisible } = props;
-
-  useEffect(() => {
-    allRoles().then((res) => {
-      const items: any = [];
-      res.data.forEach((item: any) => {
-        items[item.id] = item;
-      });
-      setRoles(items);
-    });
-  }, []);
-
-  const handleSubmit = async () => {
-    const fieldsValue = await form.validateFields();
-    handleUpdate({ ...formVals, ...fieldsValue });
-  };
-
-  const handleUploadChange = (fileList: any) => {
-    if (fileList.file.status === 'uploading') {
-      setUploadVal({ loading: true });
-      return;
-    }
-    if (fileList.file.status === 'error') {
-      setUploadVal({ loading: false });
-      notification.error({
-        message: '上传失败',
-        description: fileList.file.response.message,
-      });
-      return;
-    }
-    if (fileList.file.status === 'done') {
-      setUploadVal({ loading: false, url: fileList.file.response.url });
-      formVals.avatar = fileList.file.response.url;
-    }
-  };
-
-  const token = localStorage.getItem('token') || '';
-  const jwtHeader = { Authorization: `Bearer ${token}` };
-
-  const renderContent = () => {
-    const uploadButton = (
-      <div>
-        {uploadVal.loading ? <LoadingOutlined /> : <PlusOutlined />}
-        <div style={{ marginTop: 8 }}>上传</div>
-      </div>
-    );
-
-    return (
-      <>
-        <FormItem label="头像">
-          <Upload
-            listType="picture-card"
-            className="avatar-uploader"
-            showUploadList={false}
-            action="/api/admin/upload/image/avatar"
-            headers={jwtHeader}
-            onChange={handleUploadChange}
-          >
-            {uploadVal.url ? <img src={uploadVal.url} style={{ width: '100%' }} /> : uploadButton}
-          </Upload>
-        </FormItem>
-        <FormItem name="username" label="帐号">
-          <Input />
-        </FormItem>
-        <FormItem name="roles" label="角色">
-          <Select mode="multiple">
-            {roles.map((role: any) => (
-              <>
-                <Option value={role.id}>{role.name}</Option>
-              </>
-            ))}
-          </Select>
-        </FormItem>
-        <FormItem name="nickname" label="昵称">
-          <Input />
-        </FormItem>
-        <FormItem name="mobile" label="手机号">
-          <Input />
-        </FormItem>
-        <FormItem name="password" label="密码" initialValue="">
-          <Input placeholder="为空不修改密码" />
-        </FormItem>
-        <FormItem name="status" label="状态" rules={[{ required: true, message: '请选择！' }]}>
-          <Select style={{ width: '100%' }}>
-            <Option value={0}>禁用</Option>
-            <Option value={1}>正常</Option>
-          </Select>
-        </FormItem>
-      </>
-    );
-  };
-
-  const renderFooter = () => {
-    return (
-      <>
-        <Button onClick={() => handleUpdateModalVisible(false)}>取消</Button>
-        <Button type="primary" onClick={() => handleSubmit()}>
-          确定
-        </Button>
-      </>
-    );
-  };
+  const { onSubmit, onCancel: handleUpdateModalVisible, updateModalVisible, values } = props;
+  values.roles = values.id ? values.roles : [];
+  const form = useMemo(
+    () =>
+      createForm({
+        initialValues: values,
+        effects() {
+          allRoles().then((res) => {
+            const items: any = [];
+            res.data.forEach((item: any) => {
+              items.push({ label: item.name, value: item.id });
+            });
+            form.setFieldState('roles', { dataSource: items });
+          });
+        },
+      }),
+    [values],
+  );
 
   return (
     <Modal
       destroyOnClose
-      title={formVals.id ? '编辑' : '添加'}
+      title={values.id ? '修改' : '添加'}
       open={updateModalVisible}
-      footer={renderFooter()}
+      footer={null}
       onCancel={() => handleUpdateModalVisible()}
     >
-      <Form {...formLayout} form={form} initialValues={formVals}>
-        {renderContent()}
+      <Form form={form} labelCol={6} wrapperCol={16}>
+        <SchemaField>
+          <SchemaField.String
+            name="avatar"
+            title="头像"
+            x-decorator="FormItem"
+            x-component="CustomImageUpload"
+            x-component-props={{
+              multiple: false,
+              maxCount: 1,
+            }}
+          />
+          <SchemaField.String
+            name="username"
+            title="账号"
+            x-decorator="FormItem"
+            x-component="Input"
+            x-component-props={{
+              disabled: values.id ? true : false,
+            }}
+          />
+          <SchemaField.String
+            name="roles"
+            title="角色"
+            x-decorator="FormItem"
+            x-component="Select"
+            x-component-props={{
+              mode: 'multiple',
+            }}
+          />
+          <SchemaField.String
+            name="nickname"
+            title="昵称"
+            x-decorator="FormItem"
+            x-component="Input"
+          />
+          <SchemaField.String
+            name="mobile"
+            title="手机号"
+            x-decorator="FormItem"
+            x-component="Input"
+            x-component-props={{
+              disabled: values.id ? true : false,
+            }}
+          />
+          <SchemaField.String
+            name="password"
+            title="密码"
+            x-decorator="FormItem"
+            x-component="Input"
+            x-component-props={{
+              placeholder: '为空不修改密码',
+            }}
+          />
+          <SchemaField.String
+            name="status"
+            title="状态"
+            x-decorator="FormItem"
+            x-component="Select"
+            enum={[
+              { label: '禁用', value: 0 },
+              { label: '正常', value: 1 },
+            ]}
+            required
+          />
+        </SchemaField>
+        <FormButtonGroup.FormItem>
+          <Reset>重置</Reset>
+          <Submit onSubmit={onSubmit}>提交</Submit>
+        </FormButtonGroup.FormItem>
       </Form>
     </Modal>
   );

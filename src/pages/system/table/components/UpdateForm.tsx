@@ -100,7 +100,7 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
       destroyOnClose
       title="添加"
       width={640}
-      visible={updateModalVisible}
+      open={updateModalVisible}
       onCancel={() => onCancel()}
       footer={null}
     >
