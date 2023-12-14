@@ -87,7 +87,6 @@ export interface UpdateFormProps {
 
 const UpdateForm: React.FC<UpdateFormProps> = (props) => {
   const { updateModalVisible, values, onCancel, onSubmit } = props;
-  values.schema_string = JSON.stringify(values.schema);
   const form = useMemo(
     () =>
       createForm({
@@ -121,13 +120,6 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
             x-decorator="FormItem"
             x-component="Input"
             required
-          />
-          <SchemaField.String
-            name="schema_string"
-            title="Schema"
-            x-decorator="FormItem"
-            x-component="Input.TextArea"
-            x-component-props={{ style: { height: '320px' } }}
           />
           {values.add || (
             <SchemaField.Markup

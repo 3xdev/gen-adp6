@@ -1,4 +1,5 @@
 import { PlusOutlined } from '@ant-design/icons';
+import { history } from '@umijs/max';
 import { Button, message, Popconfirm } from 'antd';
 import React, { useState, useRef } from 'react';
 import { PageContainer } from '@ant-design/pro-layout';
@@ -103,6 +104,14 @@ const FormTable: React.FC = () => {
       dataIndex: 'option',
       valueType: 'option',
       render: (_, record) => [
+        <a
+          key="col"
+          onClick={() => {
+            history.push(`${history.location.pathname}/${record.code}/col`);
+          }}
+        >
+          设计
+        </a>,
         <a
           key="update"
           onClick={() => {

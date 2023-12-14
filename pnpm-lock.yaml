@@ -41,6 +41,21 @@ dependencies:
   '@formily/reactive':
     specifier: ^2.3.0
     version: registry.npmmirror.com/@formily/reactive@2.3.0
+  '@pind/designable-core':
+    specifier: ^2.0.0-beta.6
+    version: registry.npmmirror.com/@pind/designable-core@2.0.0-beta.6(@formily/json-schema@2.3.0)(@formily/path@2.3.0)
+  '@pind/designable-formily-antd':
+    specifier: ^2.0.0-beta.6
+    version: registry.npmmirror.com/@pind/designable-formily-antd@2.0.0-beta.6(@formily/antd-v5@1.1.9)(@formily/core@2.3.0)(@formily/json-schema@2.3.0)(@formily/path@2.3.0)(@formily/react@2.3.0)(@formily/reactive-react@2.3.0)(@formily/reactive@2.3.0)(@formily/shared@2.3.0)(@types/react-dom@18.2.17)(@types/react@18.2.45)(dayjs@1.11.10)(moment@2.29.4)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(typescript@5.3.3)
+  '@pind/designable-formily-transformer':
+    specifier: ^2.0.0-beta.6
+    version: registry.npmmirror.com/@pind/designable-formily-transformer@2.0.0-beta.6(@formily/core@2.3.0)(@formily/json-schema@2.3.0)(@formily/path@2.3.0)
+  '@pind/designable-react':
+    specifier: ^2.0.0-beta.6
+    version: registry.npmmirror.com/@pind/designable-react@2.0.0-beta.6(@formily/json-schema@2.3.0)(@formily/path@2.3.0)(@formily/reactive-react@2.3.0)(@formily/reactive@2.3.0)(moment@2.29.4)(react-dom@18.2.0)(react@18.2.0)
+  '@pind/designable-react-settings-form':
+    specifier: ^2.0.0-beta.6
+    version: registry.npmmirror.com/@pind/designable-react-settings-form@2.0.0-beta.6(@formily/antd-v5@1.1.9)(@formily/core@2.3.0)(@formily/json-schema@2.3.0)(@formily/path@2.3.0)(@formily/react@2.3.0)(@formily/reactive-react@2.3.0)(@formily/reactive@2.3.0)(@formily/shared@2.3.0)(@types/react-dom@18.2.17)(@types/react@18.2.45)(dayjs@1.11.10)(moment@2.29.4)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
   '@types/mustache':
     specifier: ^4.2.5
     version: registry.npmmirror.com/@types/mustache@4.2.5
@@ -4117,6 +4132,17 @@ packages:
       - supports-color
     dev: true
 
+  registry.npmmirror.com/@icons/material@0.2.4(react@18.2.0):
+    resolution: {integrity: sha512-QPcGmICAPbGLGb6F/yNf/KzKqvFx8z5qx3D1yFqVAjoFmXK35EgyW+cJ57Te3CNsmzblwtzakLGFqHPqrfb4Tw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@icons/material/-/material-0.2.4.tgz}
+    id: registry.npmmirror.com/@icons/material/0.2.4
+    name: '@icons/material'
+    version: 0.2.4
+    peerDependencies:
+      react: '*'
+    dependencies:
+      react: registry.npmmirror.com/react@18.2.0
+    dev: false
+
   registry.npmmirror.com/@istanbuljs/load-nyc-config@1.1.0:
     resolution: {integrity: sha512-VjeHSlIzpv/NyD3N0YuHfXOPDIixcA1q2ZV98wsMqcYlPmv2n3Yb2lYP9XMElnaFVXg5A7YLTeLu6V84uQDjmQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@istanbuljs/load-nyc-config/-/load-nyc-config-1.1.0.tgz}
     name: '@istanbuljs/load-nyc-config'
@@ -4481,6 +4507,34 @@ packages:
       react-is: registry.npmmirror.com/react-is@16.13.1
     dev: true
 
+  registry.npmmirror.com/@monaco-editor/loader@1.4.0(monaco-editor@0.34.1):
+    resolution: {integrity: sha512-00ioBig0x642hytVspPl7DbQyaSWRaolYie/UFNjoTdvoKPzo6xrXLhTk9ixgIKcLH5b5vDOjVNiGyY+uDCUlg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@monaco-editor/loader/-/loader-1.4.0.tgz}
+    id: registry.npmmirror.com/@monaco-editor/loader/1.4.0
+    name: '@monaco-editor/loader'
+    version: 1.4.0
+    peerDependencies:
+      monaco-editor: '>= 0.21.0 < 1'
+    dependencies:
+      monaco-editor: registry.npmmirror.com/monaco-editor@0.34.1
+      state-local: registry.npmmirror.com/state-local@1.0.7
+    dev: false
+
+  registry.npmmirror.com/@monaco-editor/react@4.6.0(monaco-editor@0.34.1)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-RFkU9/i7cN2bsq/iTkurMWOEErmYcY6JiQI3Jn+WeR/FGISH8JbHERjpS9oRuSOPvDMJI0Z8nJeKkbOs9sBYQw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@monaco-editor/react/-/react-4.6.0.tgz}
+    id: registry.npmmirror.com/@monaco-editor/react/4.6.0
+    name: '@monaco-editor/react'
+    version: 4.6.0
+    peerDependencies:
+      monaco-editor: '>= 0.25.0 < 1'
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      '@monaco-editor/loader': registry.npmmirror.com/@monaco-editor/loader@1.4.0(monaco-editor@0.34.1)
+      monaco-editor: registry.npmmirror.com/monaco-editor@0.34.1
+      react: registry.npmmirror.com/react@18.2.0
+      react-dom: registry.npmmirror.com/react-dom@18.2.0(react@18.2.0)
+    dev: false
+
   registry.npmmirror.com/@nicolo-ribaudo/eslint-scope-5-internals@5.1.1-v1:
     resolution: {integrity: sha512-54/JRvkLIzzDWshCWfuhadfrfZVPiElY8Fcgmg1HroEly/EDSszzhBAsarCux+D/kOslTRquNzuyGSmUSTTHGg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@nicolo-ribaudo/eslint-scope-5-internals/-/eslint-scope-5-internals-5.1.1-v1.tgz}
     name: '@nicolo-ribaudo/eslint-scope-5-internals'
@@ -4512,6 +4566,224 @@ packages:
     dependencies:
       '@nodelib/fs.scandir': registry.npmmirror.com/@nodelib/fs.scandir@2.1.5
       fastq: registry.npmmirror.com/fastq@1.15.0
+
+  registry.npmmirror.com/@pind/designable-core@2.0.0-beta.6(@formily/json-schema@2.3.0)(@formily/path@2.3.0):
+    resolution: {integrity: sha512-WUdGrIaQV5UBIkuTXcLpFSFzILS3V2XIMpeaOZrh4SyZ2/AuhCJq+xZsEuUNj320RsJE/C1lE9sdGzxo0cbcug==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@pind/designable-core/-/designable-core-2.0.0-beta.6.tgz}
+    id: registry.npmmirror.com/@pind/designable-core/2.0.0-beta.6
+    name: '@pind/designable-core'
+    version: 2.0.0-beta.6
+    engines: {npm: '>=3.0.0'}
+    peerDependencies:
+      '@formily/json-schema': ^2.2.14
+      '@formily/path': ^2.2.14
+    dependencies:
+      '@formily/json-schema': registry.npmmirror.com/@formily/json-schema@2.3.0(typescript@5.3.3)
+      '@formily/path': registry.npmmirror.com/@formily/path@2.3.0
+      '@formily/reactive': registry.npmmirror.com/@formily/reactive@2.3.0
+      '@juggle/resize-observer': registry.npmmirror.com/@juggle/resize-observer@3.4.0
+      '@pind/designable-shared': registry.npmmirror.com/@pind/designable-shared@2.0.0-beta.6
+    dev: false
+
+  registry.npmmirror.com/@pind/designable-formily-antd@2.0.0-beta.6(@formily/antd-v5@1.1.9)(@formily/core@2.3.0)(@formily/json-schema@2.3.0)(@formily/path@2.3.0)(@formily/react@2.3.0)(@formily/reactive-react@2.3.0)(@formily/reactive@2.3.0)(@formily/shared@2.3.0)(@types/react-dom@18.2.17)(@types/react@18.2.45)(dayjs@1.11.10)(moment@2.29.4)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(typescript@5.3.3):
+    resolution: {integrity: sha512-4t9DbT/dSZCnxHKGi8AXezj7Om7yjMklDulLWskkFoLQpOD8m2Mj3lEFU0PLGqakafMITxC3us+h1dx2/UOP9g==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@pind/designable-formily-antd/-/designable-formily-antd-2.0.0-beta.6.tgz}
+    id: registry.npmmirror.com/@pind/designable-formily-antd/2.0.0-beta.6
+    name: '@pind/designable-formily-antd'
+    version: 2.0.0-beta.6
+    engines: {npm: '>=3.0.0'}
+    peerDependencies:
+      '@formily/antd-v5': ^1.0.1-rc.1
+      '@formily/core': ^2.2.14
+      '@formily/json-schema': ^2.2.14
+      '@formily/react': ^2.2.14
+      '@formily/reactive': ^2.2.14
+      '@formily/reactive-react': ^2.2.14
+      '@formily/shared': ^2.2.14
+      '@types/react': ^18.0.0
+      '@types/react-dom': ^18.0.0
+      react: ^18.0.0
+      react-dom: '>=16.8.0'
+      react-is: ^18.0.0
+    dependencies:
+      '@formily/antd-v5': registry.npmmirror.com/@formily/antd-v5@1.1.9(@types/react-dom@18.2.17)(@types/react@18.2.45)(antd@5.12.2)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(typescript@5.3.3)
+      '@formily/core': registry.npmmirror.com/@formily/core@2.3.0
+      '@formily/json-schema': registry.npmmirror.com/@formily/json-schema@2.3.0(typescript@5.3.3)
+      '@formily/react': registry.npmmirror.com/@formily/react@2.3.0(@types/react-dom@18.2.17)(@types/react@18.2.45)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(typescript@5.3.3)
+      '@formily/reactive': registry.npmmirror.com/@formily/reactive@2.3.0
+      '@formily/reactive-react': registry.npmmirror.com/@formily/reactive-react@2.3.0(@types/react-dom@18.2.17)(@types/react@18.2.45)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
+      '@formily/shared': registry.npmmirror.com/@formily/shared@2.3.0
+      '@pind/designable-core': registry.npmmirror.com/@pind/designable-core@2.0.0-beta.6(@formily/json-schema@2.3.0)(@formily/path@2.3.0)
+      '@pind/designable-formily-setters': registry.npmmirror.com/@pind/designable-formily-setters@2.0.0-beta.6(@formily/antd-v5@1.1.9)(@formily/core@2.3.0)(@formily/json-schema@2.3.0)(@formily/path@2.3.0)(@formily/react@2.3.0)(@formily/reactive-react@2.3.0)(@formily/reactive@2.3.0)(@formily/shared@2.3.0)(@types/react-dom@18.2.17)(@types/react@18.2.45)(antd@5.12.2)(dayjs@1.11.10)(moment@2.29.4)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(typescript@5.3.3)
+      '@pind/designable-formily-transformer': registry.npmmirror.com/@pind/designable-formily-transformer@2.0.0-beta.6(@formily/core@2.3.0)(@formily/json-schema@2.3.0)(@formily/path@2.3.0)
+      '@pind/designable-react': registry.npmmirror.com/@pind/designable-react@2.0.0-beta.6(@formily/json-schema@2.3.0)(@formily/path@2.3.0)(@formily/reactive-react@2.3.0)(@formily/reactive@2.3.0)(moment@2.29.4)(react-dom@18.2.0)(react@18.2.0)
+      '@types/react': registry.npmmirror.com/@types/react@18.2.45
+      '@types/react-dom': registry.npmmirror.com/@types/react-dom@18.2.17
+      antd: registry.npmmirror.com/antd@5.12.2(moment@2.29.4)(react-dom@18.2.0)(react@18.2.0)
+      classnames: registry.npmmirror.com/classnames@2.3.2
+      react: registry.npmmirror.com/react@18.2.0
+      react-dom: registry.npmmirror.com/react-dom@18.2.0(react@18.2.0)
+      react-is: registry.npmmirror.com/react-is@18.2.0
+    transitivePeerDependencies:
+      - '@formily/path'
+      - date-fns
+      - dayjs
+      - luxon
+      - moment
+      - typescript
+    dev: false
+
+  registry.npmmirror.com/@pind/designable-formily-setters@2.0.0-beta.6(@formily/antd-v5@1.1.9)(@formily/core@2.3.0)(@formily/json-schema@2.3.0)(@formily/path@2.3.0)(@formily/react@2.3.0)(@formily/reactive-react@2.3.0)(@formily/reactive@2.3.0)(@formily/shared@2.3.0)(@types/react-dom@18.2.17)(@types/react@18.2.45)(antd@5.12.2)(dayjs@1.11.10)(moment@2.29.4)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(typescript@5.3.3):
+    resolution: {integrity: sha512-xG+Qh+ZESuojGY16aieyLYPUsPXTc63FG841sAFCdi320su8ouu+RRtaTWapcPSgVYcW4m87zMe+zmMqjDZ3Xw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@pind/designable-formily-setters/-/designable-formily-setters-2.0.0-beta.6.tgz}
+    id: registry.npmmirror.com/@pind/designable-formily-setters/2.0.0-beta.6
+    name: '@pind/designable-formily-setters'
+    version: 2.0.0-beta.6
+    engines: {npm: '>=3.0.0'}
+    peerDependencies:
+      '@formily/antd-v5': ^1.0.1-rc.1
+      '@formily/core': ^2.2.14
+      '@formily/json-schema': ^2.2.14
+      '@formily/react': ^2.2.14
+      '@formily/reactive': ^2.2.14
+      '@formily/reactive-react': ^2.2.14
+      '@formily/shared': ^2.2.14
+      '@types/react': ^18.0.0
+      '@types/react-dom': ^18.0.0
+      antd: ^5.0.0
+      react: ^18.0.0
+      react-dom: ^18.0.0
+      react-is: ^18.0.0
+    dependencies:
+      '@formily/antd-v5': registry.npmmirror.com/@formily/antd-v5@1.1.9(@types/react-dom@18.2.17)(@types/react@18.2.45)(antd@5.12.2)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(typescript@5.3.3)
+      '@formily/core': registry.npmmirror.com/@formily/core@2.3.0
+      '@formily/json-schema': registry.npmmirror.com/@formily/json-schema@2.3.0(typescript@5.3.3)
+      '@formily/react': registry.npmmirror.com/@formily/react@2.3.0(@types/react-dom@18.2.17)(@types/react@18.2.45)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(typescript@5.3.3)
+      '@formily/reactive': registry.npmmirror.com/@formily/reactive@2.3.0
+      '@formily/reactive-react': registry.npmmirror.com/@formily/reactive-react@2.3.0(@types/react-dom@18.2.17)(@types/react@18.2.45)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
+      '@formily/shared': registry.npmmirror.com/@formily/shared@2.3.0
+      '@pind/designable-core': registry.npmmirror.com/@pind/designable-core@2.0.0-beta.6(@formily/json-schema@2.3.0)(@formily/path@2.3.0)
+      '@pind/designable-formily-transformer': registry.npmmirror.com/@pind/designable-formily-transformer@2.0.0-beta.6(@formily/core@2.3.0)(@formily/json-schema@2.3.0)(@formily/path@2.3.0)
+      '@pind/designable-react': registry.npmmirror.com/@pind/designable-react@2.0.0-beta.6(@formily/json-schema@2.3.0)(@formily/path@2.3.0)(@formily/reactive-react@2.3.0)(@formily/reactive@2.3.0)(moment@2.29.4)(react-dom@18.2.0)(react@18.2.0)
+      '@pind/designable-react-settings-form': registry.npmmirror.com/@pind/designable-react-settings-form@2.0.0-beta.6(@formily/antd-v5@1.1.9)(@formily/core@2.3.0)(@formily/json-schema@2.3.0)(@formily/path@2.3.0)(@formily/react@2.3.0)(@formily/reactive-react@2.3.0)(@formily/reactive@2.3.0)(@formily/shared@2.3.0)(@types/react-dom@18.2.17)(@types/react@18.2.45)(dayjs@1.11.10)(moment@2.29.4)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
+      '@pind/designable-shared': registry.npmmirror.com/@pind/designable-shared@2.0.0-beta.6
+      '@types/react': registry.npmmirror.com/@types/react@18.2.45
+      '@types/react-dom': registry.npmmirror.com/@types/react-dom@18.2.17
+      antd: registry.npmmirror.com/antd@5.12.2(moment@2.29.4)(react-dom@18.2.0)(react@18.2.0)
+      classnames: registry.npmmirror.com/classnames@2.3.2
+      react: registry.npmmirror.com/react@18.2.0
+      react-dom: registry.npmmirror.com/react-dom@18.2.0(react@18.2.0)
+      react-is: registry.npmmirror.com/react-is@18.2.0
+    transitivePeerDependencies:
+      - '@formily/path'
+      - date-fns
+      - dayjs
+      - luxon
+      - moment
+      - typescript
+    dev: false
+
+  registry.npmmirror.com/@pind/designable-formily-transformer@2.0.0-beta.6(@formily/core@2.3.0)(@formily/json-schema@2.3.0)(@formily/path@2.3.0):
+    resolution: {integrity: sha512-/ZF3Tb7g3aWTnZhtqXaKxEDOE2JMBaR4sxRQGKokq0QuqFD1sVo2OVD+EzOVMzaiyyVM28ns2ZlYR1fozdECaQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@pind/designable-formily-transformer/-/designable-formily-transformer-2.0.0-beta.6.tgz}
+    id: registry.npmmirror.com/@pind/designable-formily-transformer/2.0.0-beta.6
+    name: '@pind/designable-formily-transformer'
+    version: 2.0.0-beta.6
+    engines: {npm: '>=3.0.0'}
+    peerDependencies:
+      '@formily/core': ^2.2.14
+      '@formily/json-schema': ^2.2.14
+    dependencies:
+      '@formily/core': registry.npmmirror.com/@formily/core@2.3.0
+      '@formily/json-schema': registry.npmmirror.com/@formily/json-schema@2.3.0(typescript@5.3.3)
+      '@pind/designable-core': registry.npmmirror.com/@pind/designable-core@2.0.0-beta.6(@formily/json-schema@2.3.0)(@formily/path@2.3.0)
+      '@pind/designable-shared': registry.npmmirror.com/@pind/designable-shared@2.0.0-beta.6
+    transitivePeerDependencies:
+      - '@formily/path'
+    dev: false
+
+  registry.npmmirror.com/@pind/designable-react-settings-form@2.0.0-beta.6(@formily/antd-v5@1.1.9)(@formily/core@2.3.0)(@formily/json-schema@2.3.0)(@formily/path@2.3.0)(@formily/react@2.3.0)(@formily/reactive-react@2.3.0)(@formily/reactive@2.3.0)(@formily/shared@2.3.0)(@types/react-dom@18.2.17)(@types/react@18.2.45)(dayjs@1.11.10)(moment@2.29.4)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3):
+    resolution: {integrity: sha512-Fn3WAS5jKCBNXawHgOF/EIoVTSbHDJNGNwU2X81Cim3lVsKr1DqSQrmAOUlAKw5bqmEhgDBW7r2xulA7ztVL5A==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@pind/designable-react-settings-form/-/designable-react-settings-form-2.0.0-beta.6.tgz}
+    id: registry.npmmirror.com/@pind/designable-react-settings-form/2.0.0-beta.6
+    name: '@pind/designable-react-settings-form'
+    version: 2.0.0-beta.6
+    engines: {npm: '>=3.0.0'}
+    peerDependencies:
+      '@formily/antd-v5': ^1.0.1-rc.1
+      '@formily/core': ^2.2.14
+      '@formily/react': ^2.2.14
+      '@formily/reactive': ^2.2.14
+      '@formily/reactive-react': ^2.2.14
+      '@formily/shared': ^2.2.14
+      '@types/react': ^18.0.0
+      '@types/react-dom': ^18.0.0
+      dayjs: ^1.11.7
+      react: ^18.0.0
+      react-dom: ^18.2.0
+    dependencies:
+      '@babel/parser': registry.npmmirror.com/@babel/parser@7.23.6
+      '@formily/antd-v5': registry.npmmirror.com/@formily/antd-v5@1.1.9(@types/react-dom@18.2.17)(@types/react@18.2.45)(antd@5.12.2)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(typescript@5.3.3)
+      '@formily/core': registry.npmmirror.com/@formily/core@2.3.0
+      '@formily/grid': registry.npmmirror.com/@formily/grid@2.3.0(typescript@5.3.3)
+      '@formily/react': registry.npmmirror.com/@formily/react@2.3.0(@types/react-dom@18.2.17)(@types/react@18.2.45)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(typescript@5.3.3)
+      '@formily/reactive': registry.npmmirror.com/@formily/reactive@2.3.0
+      '@formily/reactive-react': registry.npmmirror.com/@formily/reactive-react@2.3.0(@types/react-dom@18.2.17)(@types/react@18.2.45)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
+      '@formily/shared': registry.npmmirror.com/@formily/shared@2.3.0
+      '@monaco-editor/loader': registry.npmmirror.com/@monaco-editor/loader@1.4.0(monaco-editor@0.34.1)
+      '@monaco-editor/react': registry.npmmirror.com/@monaco-editor/react@4.6.0(monaco-editor@0.34.1)(react-dom@18.2.0)(react@18.2.0)
+      '@pind/designable-core': registry.npmmirror.com/@pind/designable-core@2.0.0-beta.6(@formily/json-schema@2.3.0)(@formily/path@2.3.0)
+      '@pind/designable-react': registry.npmmirror.com/@pind/designable-react@2.0.0-beta.6(@formily/json-schema@2.3.0)(@formily/path@2.3.0)(@formily/reactive-react@2.3.0)(@formily/reactive@2.3.0)(moment@2.29.4)(react-dom@18.2.0)(react@18.2.0)
+      '@pind/designable-shared': registry.npmmirror.com/@pind/designable-shared@2.0.0-beta.6
+      '@types/react': registry.npmmirror.com/@types/react@18.2.45
+      '@types/react-dom': registry.npmmirror.com/@types/react-dom@18.2.17
+      antd: registry.npmmirror.com/antd@5.12.2(moment@2.29.4)(react-dom@18.2.0)(react@18.2.0)
+      classnames: registry.npmmirror.com/classnames@2.3.2
+      dayjs: registry.npmmirror.com/dayjs@1.11.10
+      monaco-editor: registry.npmmirror.com/monaco-editor@0.34.1
+      prettier: registry.npmmirror.com/prettier@2.8.8
+      react: registry.npmmirror.com/react@18.2.0
+      react-color: registry.npmmirror.com/react-color@2.19.3(react@18.2.0)
+      react-dom: registry.npmmirror.com/react-dom@18.2.0(react@18.2.0)
+    transitivePeerDependencies:
+      - '@formily/json-schema'
+      - '@formily/path'
+      - date-fns
+      - luxon
+      - moment
+      - typescript
+    dev: false
+
+  registry.npmmirror.com/@pind/designable-react@2.0.0-beta.6(@formily/json-schema@2.3.0)(@formily/path@2.3.0)(@formily/reactive-react@2.3.0)(@formily/reactive@2.3.0)(moment@2.29.4)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-+A214FlVRGkz5z216Zc9J+T7HAyZO4qSXtaHBg2osDB7Q7wTEm+LMIxTUXZ6Kjr6O2faQbxh99q6Qq7yRgXeoA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@pind/designable-react/-/designable-react-2.0.0-beta.6.tgz}
+    id: registry.npmmirror.com/@pind/designable-react/2.0.0-beta.6
+    name: '@pind/designable-react'
+    version: 2.0.0-beta.6
+    engines: {npm: '>=3.0.0'}
+    peerDependencies:
+      '@formily/reactive': ^2.2.14
+      '@formily/reactive-react': ^2.2.14
+    dependencies:
+      '@formily/reactive': registry.npmmirror.com/@formily/reactive@2.3.0
+      '@formily/reactive-react': registry.npmmirror.com/@formily/reactive-react@2.3.0(@types/react-dom@18.2.17)(@types/react@18.2.45)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
+      '@pind/designable-core': registry.npmmirror.com/@pind/designable-core@2.0.0-beta.6(@formily/json-schema@2.3.0)(@formily/path@2.3.0)
+      '@pind/designable-shared': registry.npmmirror.com/@pind/designable-shared@2.0.0-beta.6
+      antd: registry.npmmirror.com/antd@5.12.2(moment@2.29.4)(react-dom@18.2.0)(react@18.2.0)
+      classnames: registry.npmmirror.com/classnames@2.3.2
+      dateformat: registry.npmmirror.com/dateformat@4.6.3
+    transitivePeerDependencies:
+      - '@formily/json-schema'
+      - '@formily/path'
+      - date-fns
+      - luxon
+      - moment
+      - react
+      - react-dom
+    dev: false
+
+  registry.npmmirror.com/@pind/designable-shared@2.0.0-beta.6:
+    resolution: {integrity: sha512-zxtAAt4iSw3bKA7aXT7yGoGC3BB3SppxAPJwx9hSyduCql8cCytUfG5VtSj0AdqYOIhcB5dJORW23RSI7+NQYQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@pind/designable-shared/-/designable-shared-2.0.0-beta.6.tgz}
+    name: '@pind/designable-shared'
+    version: 2.0.0-beta.6
+    engines: {npm: '>=3.0.0'}
+    dependencies:
+      requestidlecallback: registry.npmmirror.com/requestidlecallback@0.3.0
+    dev: false
 
   registry.npmmirror.com/@pkgr/utils@2.4.2:
     resolution: {integrity: sha512-POgTXhjrTfbTV63DiFXav4lBHiICLKKwDeaKn9Nphwj7WH6m0hMMCaJkMyRWjgtPFyRKRVoMXXjczsTQRDEhYw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@pkgr/utils/-/utils-2.4.2.tgz}
@@ -5404,7 +5676,7 @@ packages:
       '@types/history': registry.npmmirror.com/@types/history@4.7.11
       '@types/react': registry.npmmirror.com/@types/react@18.2.45
       '@types/react-router': registry.npmmirror.com/@types/react-router@5.1.20
-      redux: registry.npmmirror.com/redux@3.7.2
+      redux: registry.npmmirror.com/redux@4.2.1
     dev: true
 
   registry.npmmirror.com/@types/react-router@5.1.20:
@@ -9430,6 +9702,12 @@ packages:
     version: 0.0.0
     deprecated: 0.x is no longer supported. Please upgrade to 4.x or higher.
     dev: true
+
+  registry.npmmirror.com/dateformat@4.6.3:
+    resolution: {integrity: sha512-2P0p0pFGzHS5EMnhdxQi7aJN+iMheud0UhG4dlE1DLAlvL8JHjJJTX/CSm4JXwV0Ka5nGk3zC5mcb5bUQUxxMA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/dateformat/-/dateformat-4.6.3.tgz}
+    name: dateformat
+    version: 4.6.3
+    dev: false
 
   registry.npmmirror.com/dayjs@1.11.10:
     resolution: {integrity: sha512-vjAczensTgRcqDERK0SR2XMwsF/tSvnvlv6VcF2GIhg6Sx4yOIt/irsr1RDJsKiIyBzJDpCoXiWWq28MqH2cnQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/dayjs/-/dayjs-1.11.10.tgz}
@@ -14360,7 +14638,6 @@ packages:
     resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/lodash-es/-/lodash-es-4.17.21.tgz}
     name: lodash-es
     version: 4.17.21
-    dev: true
 
   registry.npmmirror.com/lodash.camelcase@4.3.0:
     resolution: {integrity: sha512-TwuEnCnxbc3rAvhf/LbG7tJUDzhqXyFnv3dtzLOPgCG/hODL7WFnsbwktkD7yUV0RrreP/l1PALq/YSg6VvjlA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/lodash.camelcase/-/lodash.camelcase-4.3.0.tgz}
@@ -14601,6 +14878,12 @@ packages:
     version: 4.3.0
     engines: {node: '>=8'}
     dev: true
+
+  registry.npmmirror.com/material-colors@1.2.6:
+    resolution: {integrity: sha512-6qE4B9deFBIa9YSpOc9O0Sgc43zTeVYbgDT5veRKSlB2+ZuHNoVVxA1L/ckMUayV9Ay9y7Z/SZCLcGteW9i7bg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/material-colors/-/material-colors-1.2.6.tgz}
+    name: material-colors
+    version: 1.2.6
+    dev: false
 
   registry.npmmirror.com/mathml-tag-names@2.1.3:
     resolution: {integrity: sha512-APMBEanjybaPzUrfqU0IMU5I0AswKMH7k8OTLs0vvV4KZpExkTkY87nR/zpbuTPj+gARop7aGUbl11pnDfW6xg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/mathml-tag-names/-/mathml-tag-names-2.1.3.tgz}
@@ -14932,6 +15215,12 @@ packages:
     resolution: {integrity: sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/moment/-/moment-2.29.4.tgz}
     name: moment
     version: 2.29.4
+
+  registry.npmmirror.com/monaco-editor@0.34.1:
+    resolution: {integrity: sha512-FKc80TyiMaruhJKKPz5SpJPIjL+dflGvz4CpuThaPMc94AyN7SeC9HQ8hrvaxX7EyHdJcUY5i4D0gNyJj1vSZQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/monaco-editor/-/monaco-editor-0.34.1.tgz}
+    name: monaco-editor
+    version: 0.34.1
+    dev: false
 
   registry.npmmirror.com/ms@2.0.0:
     resolution: {integrity: sha512-Tpp60P6IUJDTuOq/5Z8cdskzJujfwqfOTkrwIwj7IRISpnkJnT6SyJ4PCPnGMoFjC9ddhal5KVIYtAt97ix05A==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/ms/-/ms-2.0.0.tgz}
@@ -16741,7 +17030,6 @@ packages:
     version: 2.8.8
     engines: {node: '>=10.13.0'}
     hasBin: true
-    dev: true
 
   registry.npmmirror.com/pretty-error@4.0.0:
     resolution: {integrity: sha512-AoJ5YMAcXKYxKhuJGdcvse+Voc6v1RgnsR3nWcYU7q4t6z0Q6T86sv5Zq8VIRbOWWFpvdGE83LtdSMNd+6Y0xw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/pretty-error/-/pretty-error-4.0.0.tgz}
@@ -18347,6 +18635,24 @@ packages:
       react: registry.npmmirror.com/react@18.2.0
       react-dom: registry.npmmirror.com/react-dom@18.2.0(react@18.2.0)
 
+  registry.npmmirror.com/react-color@2.19.3(react@18.2.0):
+    resolution: {integrity: sha512-LEeGE/ZzNLIsFWa1TMe8y5VYqr7bibneWmvJwm1pCn/eNmrabWDh659JSPn9BuaMpEfU83WTOJfnCcjDZwNQTA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/react-color/-/react-color-2.19.3.tgz}
+    id: registry.npmmirror.com/react-color/2.19.3
+    name: react-color
+    version: 2.19.3
+    peerDependencies:
+      react: '*'
+    dependencies:
+      '@icons/material': registry.npmmirror.com/@icons/material@0.2.4(react@18.2.0)
+      lodash: registry.npmmirror.com/lodash@4.17.21
+      lodash-es: registry.npmmirror.com/lodash-es@4.17.21
+      material-colors: registry.npmmirror.com/material-colors@1.2.6
+      prop-types: registry.npmmirror.com/prop-types@15.8.1
+      react: registry.npmmirror.com/react@18.2.0
+      reactcss: registry.npmmirror.com/reactcss@1.2.3(react@18.2.0)
+      tinycolor2: registry.npmmirror.com/tinycolor2@1.6.0
+    dev: false
+
   registry.npmmirror.com/react-dev-inspector@1.9.0(eslint@8.55.0)(react@18.2.0)(typescript@5.3.3)(webpack@5.89.0):
     resolution: {integrity: sha512-1ZlraWRrDz+NgjHwOmTAn/wWoP+6gZt46DS1mRRILlST0iKg4FO2Zj9dDcG5XPaeIIr3OGKwsX5vM6vakmaftA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/react-dev-inspector/-/react-dev-inspector-1.9.0.tgz}
     id: registry.npmmirror.com/react-dev-inspector/1.9.0
@@ -19143,6 +19449,12 @@ packages:
       tunnel-agent: registry.npmmirror.com/tunnel-agent@0.6.0
       uuid: registry.npmmirror.com/uuid@3.4.0
     dev: true
+
+  registry.npmmirror.com/requestidlecallback@0.3.0:
+    resolution: {integrity: sha512-TWHFkT7S9p7IxLC5A1hYmAYQx2Eb9w1skrXmQ+dS1URyvR8tenMLl4lHbqEOUnpEYxNKpkVMXUgknVpBZWXXfQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/requestidlecallback/-/requestidlecallback-0.3.0.tgz}
+    name: requestidlecallback
+    version: 0.3.0
+    dev: false
 
   registry.npmmirror.com/require-directory@2.1.1:
     resolution: {integrity: sha512-fGxEI7+wsG9xrvdjsrlmL22OMTTiHRwAMroiEeMgq8gzoLC/PQr7RsRDSTLUg/bZAZtF+TVIkHc6/4RIKrui+Q==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/require-directory/-/require-directory-2.1.1.tgz}
@@ -20214,6 +20526,12 @@ packages:
     name: stackframe
     version: 1.3.4
     dev: true
+
+  registry.npmmirror.com/state-local@1.0.7:
+    resolution: {integrity: sha512-HTEHMNieakEnoe33shBYcZ7NX83ACUjCu8c40iOGEZsngj9zRnkqS9j1pqQPXwobB0ZcVTk27REb7COQ0UR59w==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/state-local/-/state-local-1.0.7.tgz}
+    name: state-local
+    version: 1.0.7
+    dev: false
 
   registry.npmmirror.com/statuses@2.0.1:
     resolution: {integrity: sha512-RwNA9Z/7PrK06rYLIzFMlaF+l73iwpzsqRIFgbMLbTcLD6cOao82TaWefPXQvB2fOC4AjuYSEndS7N/mTCbkdQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/statuses/-/statuses-2.0.1.tgz}
