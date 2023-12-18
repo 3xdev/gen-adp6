@@ -7,23 +7,24 @@ export interface ModalTableProps {
   updateModalVisible: boolean;
   title: string;
   table: string;
-  query: any;
-  tableProps: any;
+  query?: Record<string, any>;
+  modalProps?: Record<string, any>;
+  crudTableProps?: Record<string, any>;
 }
 
 const ModalTable: React.FC<ModalTableProps> = (props) => {
-  const { onCancel, updateModalVisible, title, table, query, tableProps } = props;
+  const { onCancel, updateModalVisible, title, table, query, modalProps, crudTableProps } = props;
 
   return (
     <Modal
       destroyOnClose
       title={title}
-      width={800}
       open={updateModalVisible}
       onCancel={() => onCancel()}
       footer={null}
+      {...modalProps}
     >
-      <CrudTable {...tableProps} table={table} query={query} />
+      <CrudTable {...crudTableProps} table={table} query={query} />
     </Modal>
   );
 };

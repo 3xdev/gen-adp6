@@ -2,6 +2,7 @@ import type { ProColumns } from '@ant-design/pro-table';
 
 export interface Props {
   table: string;
+  mode?: string;
   query?: Record<string, any>;
   proTableProps?: Record<string, any>;
   visibleColumns?: string[];
@@ -22,6 +23,7 @@ export interface Props {
 }
 
 export interface TableSchema {
+  mode: string;
   rowKey: string;
   options: any;
   columns: ProColumns<T, ValueType>[];
@@ -32,8 +34,12 @@ export interface TableOption {
   action: string;
   title: string;
   target: string;
-  request?: Record<string, any>;
   body?: Record<string, any>;
+  table?: string;
+  query?: Record<string, any>;
+  request?: Record<string, any>;
+  modalProps?: Record<string, any>;
+  crudTableProps?: Record<string, any>;
 }
 
 export type TableItem = Record<string, any>;

@@ -166,6 +166,16 @@ pnpm lint:fix
 - 添加 操作 类型 接口请求  
   操作名：对应控制器代码中的方法名 表单/表格/页面：前端路由地址（示例：/user/{{user_id}}）
 
+| 操作类型 | 参数 | 示例 | 说明 |
+| --- | --- | --- | --- |
+| 接口请求 | 操作名 | postClear | 请求类型 post，方法 clear |
+| 接口请求 | 请求体 | {} | 请求附加请求体 |
+| 表单弹窗 | 表单 | 'test' | 表单代码 |
+| 表单弹窗 | 请求体 | {} | 表单附加请求体 |
+| 表格弹窗 | 表格 | product_spu?product_brand_id={{id}}&par1=y | 表格名称?查询字符串 |
+| 表格弹窗 | 参数 | {"modalProps":{"width":1000}} | {"modalProps":弹窗参数,"crudTableProps":CrudTable 参数} |
+| 跳转页面 | 页面 | /xxxx | 页面地址 |
+
 ## 开发
 
 ### Formily 联动示例
@@ -250,6 +260,7 @@ const access = useAccess();
 
 | 属性 | 描述 | 类型 | 默认值 |
 | --- | --- | --- | --- |
+| mode | 模式 | 'list' \| 'tree' | - |
 | table | 表格代码 | string | - |
 | query | 附加查询条件 | Record<string, any> | - |
 | proTableProps | 透传 protable 属性 | Record<string, any> | - |

@@ -1,6 +1,10 @@
 .root{
     position: relative !important;
 }
+:where(.css-e2eonf).ant-pro-layout .ant-pro-layout-content {
+    padding-block: 0px;
+    padding-inline: 0px;
+}
 :where(.css-dev-only-do-not-override-1lyu9ql).ant-pro-layout .ant-pro-layout-content{
     padding-block: 0px;
     padding-inline: 0px;

@@ -15,6 +15,7 @@ import type { Props, TableSchema, TableOption, TableItem } from './data.d';
 import { getProTableSchema, getFormilySchema, getSuggest } from '@/services/ant-design-pro/api';
 import { getList, exportList, getItem, updateItem, addItem, removeItem, restItem } from './service';
 import Mustache from 'mustache';
+import { parse } from 'querystring';
 
 /**
  * 添加
@@ -72,19 +73,25 @@ const handleRemove = async (table: string, ids: any) => {
 const CrudTable: React.FC<Props> = (props) => {
   const provider = useContext(ProProvider);
 
-  const [schema, setSchema] = useState<TableSchema>({ rowKey: 'id', options: [], columns: [] });
+  const [schema, setSchema] = useState<TableSchema>({
+    mode: 'list',
+    rowKey: 'id',
+    options: [],
+    columns: [],
+  });
   const [tableOption, setTableOption] = useState<TableOption>({
     type: '',
     action: '',
     title: '',
     target: '',
+    table: '',
+    query: {},
     request: {},
     body: {},
   });
   const [formSchema, setFormSchema] = useState<Record<string, any>>([{}]);
   const [formilyJson, setFormilyJson] = useState({});
   const [formilyValues, setFormilyValues] = useState<TableItem>();
-  const [tableQuery, setTableQuery] = useState<TableItem>();
 
   const [showDetail, setShowDetail] = useState<boolean>(false);
   const [showUpdateForm, setShowUpdateForm] = useState<boolean>(false);
@@ -94,6 +101,8 @@ const CrudTable: React.FC<Props> = (props) => {
   const actionRef = useRef<ActionType>();
   const [currentRow, setCurrentRow] = useState<TableItem>();
   const listParams = useRef<TableItem>();
+
+  const [proTableOptions, setproTableOptions] = useState({});
 
   const handleList = async (params: any, sorter: any, filter: any) => {
     listParams.current = { ...params, ...props.query, sorter, filter };
@@ -135,18 +144,23 @@ const CrudTable: React.FC<Props> = (props) => {
         break;
       case 'table':
         _handle = async () => {
-          console.log('-------');
-          console.log(props, { ...props.query, id: record[schema.rowKey] });
-          setTableQuery({ ...props.query, [option.body.query ?? 'id']: record[schema.rowKey] });
-          setTableOption(option);
+          const [table, query = ''] = Mustache.render(option.target, {
+            ...props.query,
+            ...record,
+          }).split('?');
+          setTableOption({
+            ...option,
+            table,
+            query: parse(query),
+            modalProps: option.body.modalProps || {},
+            crudTableProps: option.body.crudTableProps || {},
+          });
           setShowModalTable(true);
         };
         break;
       case 'page':
         _handle = () => {
-          history.push(
-            Mustache.render(option.target, { ...props.query, ...record, ...option.body }),
-          );
+          history.push(Mustache.render(option.target, { ...props.query, ...record }));
         };
         break;
       case 'request':
@@ -275,6 +289,28 @@ const CrudTable: React.FC<Props> = (props) => {
 
   useEffect(() => {
     getProTableSchema(props.table).then((res) => {
+      if (res.mode === 'tree' || props?.mode === 'tree') {
+        getList(props.table, { pageSize: 9999 }).then((res) => {
+          setproTableOptions({
+            actionRef: actionRef,
+            dataSource: res.data,
+            search: false,
+            pagination: false,
+          });
+        });
+      } else {
+        setproTableOptions({
+          actionRef: actionRef,
+          request: (params: any, sorter: any, filter: any) => handleList(params, sorter, filter),
+          beforeSearchSubmit: (params: any) => {
+            actionRef.current?.clearSelected?.();
+            return params;
+          },
+        });
+      }
+      if (props?.mode) {
+        res.mode = props.mode;
+      }
       if (props?.visibleColumns) {
         res.columns = res.columns.filter((column: any) => {
           return props.visibleColumns?.includes(column.dataIndex?.toString());
@@ -473,16 +509,7 @@ const CrudTable: React.FC<Props> = (props) => {
         },
       }}
     >
-      <ProTable<TableItem>
-        actionRef={actionRef}
-        request={(params, sorter, filter) => handleList(params, sorter, filter)}
-        beforeSearchSubmit={(params: any) => {
-          actionRef.current?.clearSelected?.();
-          return params;
-        }}
-        {...schema}
-        {...props.proTableProps}
-      />
+      <ProTable<TableItem> {...proTableOptions} {...schema} {...props.proTableProps} />
 
       <UpdateForm
         onSubmit={async (value) => {
@@ -534,9 +561,10 @@ const CrudTable: React.FC<Props> = (props) => {
         }}
         updateModalVisible={showModalTable}
         title={tableOption.title}
-        table={tableOption.target}
-        query={tableQuery}
-        tableProps={tableOption.body}
+        table={tableOption.table || ''}
+        query={tableOption.query}
+        modalProps={tableOption.modalProps}
+        crudTableProps={tableOption.crudTableProps}
       />
 
       <Drawer
