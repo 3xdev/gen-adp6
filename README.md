@@ -320,10 +320,10 @@ const access = useAccess();
       title: '列操作1',
     },
     {
-      type: 'modal',
-      action: 'good_edit',
+      type: 'form',
+      action: 'putInfo',
       title: '列操作2',
-      target: 'good_edit',
+      target: 'com_info',
     },
   ]}
   renderColumnsOptions={{

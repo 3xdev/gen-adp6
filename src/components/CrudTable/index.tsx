@@ -133,7 +133,7 @@ const CrudTable: React.FC<Props> = (props) => {
           actionRef.current?.reloadAndRest?.();
         };
         break;
-      case 'modal':
+      case 'form':
         _handle = async () => {
           getItem(props.table, record[schema.rowKey]).then((res) => {
             setFormilyValues({ ...props.query, ...res, ...option.body });
@@ -204,7 +204,7 @@ const CrudTable: React.FC<Props> = (props) => {
         };
         _icon = <ExportOutlined />;
         break;
-      case 'modal':
+      case 'form':
         _handle = () => {
           setFormilyValues({ ids: '0', ...props.query, ...option.body });
           setShowModalForm(true);
@@ -248,7 +248,7 @@ const CrudTable: React.FC<Props> = (props) => {
           actionRef.current?.reloadAndRest?.();
         };
         break;
-      case 'modal':
+      case 'form':
         _handle = () => {
           setFormilyValues({ ids: selectedRowKeys.join(','), ...props.query });
           setShowModalForm(true);
@@ -452,7 +452,7 @@ const CrudTable: React.FC<Props> = (props) => {
       setSchema(res);
       // 读取操作表单
       forms.forEach((option: any) => {
-        if (option.type === 'modal') {
+        if (option.type === 'form') {
           getFormilySchema('form', option.target).then((sres) => {
             formSchema[option.target] = sres;
             setFormSchema(formSchema);
