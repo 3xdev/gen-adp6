@@ -79,6 +79,15 @@ const CrudTable: React.FC<Props> = (props) => {
     options: [],
     columns: [],
   });
+  const [formSchema, setFormSchema] = useState<Record<string, any>>([{}]);
+  const [formilyJson, setFormilyJson] = useState({});
+  const [formilyValues, setFormilyValues] = useState<TableItem>();
+
+  const [showDetail, setShowDetail] = useState<boolean>(false);
+  const [showUpdateForm, setShowUpdateForm] = useState<boolean>(false);
+  const [showModalForm, setShowModalForm] = useState<boolean>(false);
+  const [showModalTable, setShowModalTable] = useState<boolean>(false);
+
   const [tableOption, setTableOption] = useState<TableOption>({
     type: '',
     action: '',
@@ -89,20 +98,10 @@ const CrudTable: React.FC<Props> = (props) => {
     request: {},
     body: {},
   });
-  const [formSchema, setFormSchema] = useState<Record<string, any>>([{}]);
-  const [formilyJson, setFormilyJson] = useState({});
-  const [formilyValues, setFormilyValues] = useState<TableItem>();
-
-  const [showDetail, setShowDetail] = useState<boolean>(false);
-  const [showUpdateForm, setShowUpdateForm] = useState<boolean>(false);
-  const [showModalForm, setShowModalForm] = useState<boolean>(false);
-  const [showModalTable, setShowModalTable] = useState<boolean>(false);
 
   const actionRef = useRef<ActionType>();
   const [currentRow, setCurrentRow] = useState<TableItem>();
   const listParams = useRef<TableItem>();
-
-  const [proTableOptions, setproTableOptions] = useState({});
 
   const handleList = async (params: any, sorter: any, filter: any) => {
     listParams.current = { ...params, ...props.query, sorter, filter };
@@ -287,26 +286,28 @@ const CrudTable: React.FC<Props> = (props) => {
     );
   };
 
+  const refresh = () => {
+    if (schema.mode === 'tree') {
+      getList(props.table, { mode: 'tree', pageSize: 99999 }).then((res) => {
+        setSchema({
+          ...schema,
+          dataSource: res.data,
+        });
+      });
+    } else {
+      actionRef.current?.reload();
+    }
+  };
+
   useEffect(() => {
-    getProTableSchema(props.table).then((res) => {
-      if (res.mode === 'tree' || props?.mode === 'tree') {
-        getList(props.table, { pageSize: 9999 }).then((res) => {
-          setproTableOptions({
-            actionRef: actionRef,
-            dataSource: res.data,
-            search: false,
-            pagination: false,
-          });
-        });
+    getProTableSchema(props.table).then(async (res) => {
+      if (res.mode === 'tree') {
+        const lres = await getList(props.table, { mode: 'tree', pageSize: 99999 });
+        res.dataSource = lres.data;
+        res.search = false;
+        res.pagination = false;
       } else {
-        setproTableOptions({
-          actionRef: actionRef,
-          request: (params: any, sorter: any, filter: any) => handleList(params, sorter, filter),
-          beforeSearchSubmit: (params: any) => {
-            actionRef.current?.clearSelected?.();
-            return params;
-          },
-        });
+        res.request = (params: any, sorter: any, filter: any) => handleList(params, sorter, filter);
       }
       if (props?.mode) {
         res.mode = props.mode;
@@ -509,7 +510,18 @@ const CrudTable: React.FC<Props> = (props) => {
         },
       }}
     >
-      <ProTable<TableItem> {...proTableOptions} {...schema} {...props.proTableProps} />
+      <ProTable<TableItem>
+        actionRef={actionRef}
+        beforeSearchSubmit={(params: any) => {
+          actionRef.current?.clearSelected?.();
+          return params;
+        }}
+        expandable={{
+          defaultExpandAllRows: true,
+        }}
+        {...schema}
+        {...props.proTableProps}
+      />
 
       <UpdateForm
         onSubmit={async (value) => {
@@ -520,7 +532,7 @@ const CrudTable: React.FC<Props> = (props) => {
             setShowUpdateForm(false);
             setFormilyValues({});
             setCurrentRow(undefined);
-            actionRef.current?.reload();
+            refresh();
           }
         }}
         onCancel={() => {
@@ -543,7 +555,7 @@ const CrudTable: React.FC<Props> = (props) => {
             setShowModalForm(false);
             setFormilyValues({});
             setCurrentRow(undefined);
-            actionRef.current?.reload();
+            refresh();
           }
         }}
         onCancel={() => {

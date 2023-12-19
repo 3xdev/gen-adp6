@@ -27,6 +27,10 @@ export interface TableSchema {
   rowKey: string;
   options: any;
   columns: ProColumns<T, ValueType>[];
+  request?: any;
+  dataSource?: any;
+  search?: any;
+  pagination?: any;
 }
 
 export interface TableOption {
