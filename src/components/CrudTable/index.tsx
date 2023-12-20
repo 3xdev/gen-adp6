@@ -108,6 +108,19 @@ const CrudTable: React.FC<Props> = (props) => {
     return getList(props.table, { ...params, ...props.query, sorter, filter });
   };
 
+  const refresh = () => {
+    if (schema.mode === 'tree') {
+      getList(props.table, { mode: 'tree', pageSize: 99999 }).then((res) => {
+        setSchema({
+          ...schema,
+          dataSource: res.data,
+        });
+      });
+    } else {
+      actionRef.current?.reload();
+    }
+  };
+
   const renderColumnsOptions = (option: any, record: any) => {
     let _handle = () => {};
     switch (option.type) {
@@ -129,7 +142,7 @@ const CrudTable: React.FC<Props> = (props) => {
         _handle = async () => {
           await handleRemove(props.table, record[schema.rowKey]);
           setCurrentRow(undefined);
-          actionRef.current?.reloadAndRest?.();
+          refresh();
         };
         break;
       case 'form':
@@ -168,7 +181,7 @@ const CrudTable: React.FC<Props> = (props) => {
             ...props.query,
             ...option.body,
           });
-          actionRef.current?.reloadAndRest?.();
+          refresh();
         };
         break;
     }
@@ -221,7 +234,7 @@ const CrudTable: React.FC<Props> = (props) => {
             ...props.query,
             ...option.body,
           });
-          actionRef.current?.reloadAndRest?.();
+          refresh();
         };
         break;
     }
@@ -244,7 +257,7 @@ const CrudTable: React.FC<Props> = (props) => {
       case 'bdelete':
         _handle = async () => {
           await handleRemove(props.table, selectedRowKeys.join(','));
-          actionRef.current?.reloadAndRest?.();
+          refresh();
         };
         break;
       case 'form':
@@ -265,7 +278,7 @@ const CrudTable: React.FC<Props> = (props) => {
             ...props.query,
             ...option.body,
           });
-          actionRef.current?.reloadAndRest?.();
+          refresh();
         };
         break;
     }
@@ -284,19 +297,6 @@ const CrudTable: React.FC<Props> = (props) => {
         {option.title}
       </Button>
     );
-  };
-
-  const refresh = () => {
-    if (schema.mode === 'tree') {
-      getList(props.table, { mode: 'tree', pageSize: 99999 }).then((res) => {
-        setSchema({
-          ...schema,
-          dataSource: res.data,
-        });
-      });
-    } else {
-      actionRef.current?.reload();
-    }
   };
 
   useEffect(() => {
