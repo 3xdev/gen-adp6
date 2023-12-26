@@ -11,7 +11,7 @@
 ## 安装依赖
 
 ```bash
-pnpm
+pnpm install
 ```
 
 ## 开发启动
